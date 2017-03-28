@@ -64,7 +64,7 @@ export class CodemirrorComponent {
   /**
    * On component view init
    */
-  ngAfterViewInit(){
+  ngOnInit(){
     this.config = this.config || {};
     this.codemirrorInit(this.config);
   }
