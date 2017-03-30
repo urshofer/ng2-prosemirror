@@ -9,15 +9,24 @@ import {
   forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as CodeMirror from 'codemirror';
+
+
+
+import {Schema, DOMParser}   from "prosemirror-model"
+import {EditorView}          from "prosemirror-view"
+import {EditorState}         from "prosemirror-state"
+import {schema}              from "prosemirror-schema-basic"
+import {addListNodes}        from "prosemirror-schema-list"
+import {addTableNodes}       from "prosemirror-schema-table"
+import {exampleSetup}        from "prosemirror-example-setup"
 
 /**
  * CodeMirror component
  * Usage :
- * <codemirror [(ngModel)]="data" [config]="{...}"></codemirror>
+ * <prosemirror [(ngModel)]="data" [config]="{...}"></prosemirror>
  */
 @Component({
-  selector: 'codemirror',
+  selector: 'prosemirror',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -64,7 +73,7 @@ export class CodemirrorComponent {
   /**
    * On component view init
    */
-  ngOnInit(){
+  ngAfterViewInit(){
     this.config = this.config || {};
     this.codemirrorInit(this.config);
   }
@@ -73,7 +82,19 @@ export class CodemirrorComponent {
    * Initialize codemirror
    */
   codemirrorInit(config){
-    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
+    const demoSchema = new Schema({
+      nodes: addListNodes(addTableNodes(schema.spec.nodes, "block+", "block"), "paragraph block*", "block"),
+      marks: schema.spec.marks
+    })
+
+    let state = EditorState.create({doc: DOMParser.fromSchema(demoSchema).parse(document.querySelector("#content")),
+                                    plugins: exampleSetup({schema: demoSchema})})
+
+    this.instance = new EditorView(this.host.nativeElement, {state})
+
+
+
+
     this.instance.setValue(this._value);
 
     this.instance.on('change', () => {

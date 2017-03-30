@@ -25,7 +25,15 @@
   },
   "homepage": "https://github.com/chymz/ng2-codemirror#readme",
   "dependencies": {
-    "codemirror": "^5.22.2"
+    "codemirror": "^5.22.2",
+    "prosemirror": "^0.10.1",
+    "prosemirror-example-setup": "^0.19.0",
+    "prosemirror-model": "^0.19.0",
+    "prosemirror-schema-basic": "^0.19.0",
+    "prosemirror-schema-list": "^0.19.0",
+    "prosemirror-schema-table": "^0.19.0",
+    "prosemirror-state": "^0.19.1",
+    "prosemirror-view": "^0.19.1"
   },
   "devDependencies": {
     "@angular/common": "^2.1.0",
@@ -36,11 +44,11 @@
     "@angular/platform-browser": "^2.1.0",
     "@angular/platform-server": "^2.1.0",
     "@types/ckeditor": "0.0.33",
-    "@types/core-js": "^0.9.34",
+    "@types/core-js": "^0.9.36",
     "@types/node": "^6.0.45",
-    "rxjs": "5.0.0-beta.12",
+    "rxjs": "^5.2.0",
     "typescript": "^2.0.3",
-    "zone.js": "^0.6.26"
+    "zone.js": "^0.7.8"
   },
   "peerDependencies": {
     "@angular/core": "^2.1.0",
