@@ -1,2 +1,2 @@
-export { CodemirrorModule } from './codemirror.module';
-export { CodemirrorComponent } from './codemirror.component';
+export { ProsemirrorModule } from './prosemirror.module';
+export { ProsemirrorComponent } from './prosemirror.component';
