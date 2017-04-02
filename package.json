@@ -6,7 +6,6 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "prepublish": "npm run build",
-    "install": "npm run build",
     "build": "node_modules/.bin/ngc -p tsconfig-aot.json"
   },
   "keywords": [
