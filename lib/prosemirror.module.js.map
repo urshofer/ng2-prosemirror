@@ -1,0 +1,1 @@
+{"version":3,"file":"prosemirror.module.js","sourceRoot":"","sources":["../src/prosemirror.module.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAAyC;AAEzC,iEAA+D;AAE/D;;GAEG;AAUH,IAAa,iBAAiB;IAA9B;IAA+B,CAAC;IAAD,wBAAC;AAAD,CAAC,AAAhC,IAAgC;AAAnB,iBAAiB;IAT7B,eAAQ,CAAC;QACR,YAAY,EAAE;YACZ,4CAAoB;SACrB;QACD,OAAO,EAAE;YACP,4CAAoB;SACrB;KACF,CAAC;GAEW,iBAAiB,CAAE;AAAnB,8CAAiB"}
