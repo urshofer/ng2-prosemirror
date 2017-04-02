@@ -14,6 +14,7 @@ export declare class ProsemirrorComponent implements OnChanges {
     host: any;
     instance: any;
     props: any;
+    previousValue: any;
     storeTimeout: any;
     ngOnChanges(changes: {
         [propKey: string]: SimpleChange;

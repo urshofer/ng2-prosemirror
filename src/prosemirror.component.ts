@@ -44,14 +44,16 @@ export class ProsemirrorComponent implements OnChanges {
   @Output() instance = null;
 
   props: any = null;
-
+  previousValue: any = null;
   storeTimeout: any = null;
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-      if (changes.data.currentValue !== this.data) {
-        console.log(" ------------------> update", changes);
+//      console.log(" ------------------> update", changes);
+
+//      if (changes.data.currentValue !== this.previousValue) {
+//        console.log(" ------------------> done");
         this.setContent(changes.data.currentValue);
-      }
+//      }
   }
 
   /**
@@ -60,7 +62,6 @@ export class ProsemirrorComponent implements OnChanges {
   constructor(){
     //this.count = 0;
     this.dataChange = new EventEmitter<number>();
-    console.log("*********************\nC O N S T R U C T O R\n*********************")
   }
 
   /**
@@ -79,8 +80,8 @@ export class ProsemirrorComponent implements OnChanges {
   }
 
   setContent(val) {
-    this.data = val;
-    if (this.instance !== null) {
+    if (this.instance !== null && val !== this.previousValue) {
+      this.data = val;
       this.props.state.doc = defaultMarkdownParser.parse(this.data);
       this.instance.update(this.props);
     }
@@ -96,11 +97,13 @@ export class ProsemirrorComponent implements OnChanges {
       clearTimeout(this.storeTimeout);
     }
     this.storeTimeout = setTimeout(() => {
-      console.log('done')
       this.data =  defaultMarkdownSerializer.serialize(this.instance.state.doc);
-      this.dataChange.emit(this.data);
-      this.blur.emit(this.data);
-    }, 250);
+      if (this.previousValue != this.data) {
+        this.previousValue = this.data;
+        this.dataChange.emit(this.data);
+        this.blur.emit(this.data);
+      }
+    }, 1000);
     this.change.emit(this.data);
   }
 
@@ -108,7 +111,7 @@ export class ProsemirrorComponent implements OnChanges {
    * Initialize prosemirror
    */
   prosemirrorInit(config){
-    console.log("PROSE INIT", this.instance)
+    this.previousValue = this.data;
     this.props = {
       state: EditorState.create({
         doc: defaultMarkdownParser.parse(this.data),
