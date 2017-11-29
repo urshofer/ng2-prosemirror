@@ -11,7 +11,7 @@ import {
 }                            from '@angular/core';
 import {EditorView}          from "prosemirror-view"
 import {EditorState}         from "prosemirror-state"
-import {exampleSetup}        from "prosemirror-setup"
+import {exampleSetup}        from "prosemirror-example-setup"
 import {
   schema,
   defaultMarkdownParser,
