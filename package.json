@@ -62,7 +62,7 @@
   "dependencies": {
     "prosemirror-markdown": "^1.0.0",
     "prosemirror-model": "^1.0.0",
-    "prosemirror-setup": "^1.0.0",
+    "prosemirror-example-setup": "^1.0.0",
     "prosemirror-state": "^1.0.0",
     "prosemirror-view": "^1.0.0"
   },
