@@ -22,50 +22,45 @@
       "/Users/urshofer/Documents/Work/Repositories/rokfor-writer"
     ]
   ],
-  "_from": "urshofer/ng2-prosemirror",
+  "_from": "github:urshofer/ng2-prosemirror",
   "_id": "ng2-prosemirror@1.1.1",
+  "_inBundle": false,
   "_inCache": true,
+  "_integrity": "sha1-uCNqNBenrMhw0dUj4/TPDeXAW8g=",
   "_location": "/ng2-prosemirror",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "ng2-prosemirror@github:urshofer/ng2-prosemirror",
-    "scope": null,
-    "escapedName": "ng2-prosemirror",
-    "name": "ng2-prosemirror",
+    "type": "git",
+    "raw": "github:urshofer/ng2-prosemirror",
     "rawSpec": "github:urshofer/ng2-prosemirror",
-    "spec": "github:urshofer/ng2-prosemirror",
-    "type": "hosted",
-    "hosted": {
-      "type": "github",
-      "ssh": "git@github.com:urshofer/ng2-prosemirror.git",
-      "sshUrl": "git+ssh://git@github.com/urshofer/ng2-prosemirror.git",
-      "httpsUrl": "git+https://github.com/urshofer/ng2-prosemirror.git",
-      "gitUrl": "git://github.com/urshofer/ng2-prosemirror.git",
-      "shortcut": "github:urshofer/ng2-prosemirror",
-      "directUrl": "https://raw.githubusercontent.com/urshofer/ng2-prosemirror/master/package.json"
-    }
+    "saveSpec": "github:urshofer/ng2-prosemirror",
+    "fetchSpec": null,
+    "gitCommittish": "master"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "git://github.com/urshofer/ng2-prosemirror.git#06405f1230f7ef3b0ff54a51c80515ff57513d8a",
+  "_resolved": "github:urshofer/ng2-prosemirror#99a54c1beec2c8317026f93db85902645a0a0fcc",
   "_shasum": "91294dbaab0d31da066c7b766ac2a5f7398e4b51",
   "_shrinkwrap": null,
-  "_spec": "ng2-prosemirror@github:urshofer/ng2-prosemirror",
-  "_where": "/Users/urshofer/Documents/Work/Repositories/rokfor-writer",
+  "_spec": "github:urshofer/ng2-prosemirror",
+  "_where": "/Users/urshofer/Documents/Repositories/rokfor-writer",
   "author": {
     "name": "Simon Babay"
   },
   "bugs": {
     "url": "https://github.com/chymz/ng2-codemirror/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
+    "prosemirror-example-setup": "^1.0.0",
     "prosemirror-markdown": "^1.0.0",
     "prosemirror-model": "^1.0.0",
-    "prosemirror-example-setup": "^1.0.0",
     "prosemirror-state": "^1.0.0",
     "prosemirror-view": "^1.0.0"
   },
+  "deprecated": false,
   "description": "Angular2 Prosemirror component",
   "devDependencies": {
     "@angular/common": "^2.1.0",
@@ -99,8 +94,6 @@
     "@angular/forms": "^2.1.0",
     "@angular/common": "^2.1.0"
   },
-  "readme": "# Angular2 - Codemirror component\n\nUse the [CodeMirror (5.x)](http://codemirror.net/) code editor in your Angular2 application.\n\n**Demo** : https://embed.plnkr.co/8e9gxss9u10VeFrv29Zt/\n\n### <a name=\"install\"></a>Installation\n\n- Include Codemirror javascript files in your application (with files for modes)\n- Install ng2-codemirror\n  - JSPM : `jspm install npm:ng2-codemirror`\n  - NPM : `npm install ng2-codemirror`\n\n### <a name=\"dependencies\"></a>Dependencies\nCodeMirror library is required for this component :\n  - Install via NPM : `npm install codemirror`\n  - Install via JSPM : `jspm install npm:codemirror`\n\nCodeMirror need to be accessible by `import 'codemirror'`\n\nThen you need to include base CSS of codemirror located in `codemirror/lib/codemirror.css`\n\n### <a name=\"sample\"></a>Sample\n\nInclude `CodemirrorModule` in your main module :\n\n```javascript\nimport { CodemirrorModule } from 'ng2-codemirror';\n\n@NgModule({\n  // ...\n  imports:      [\n    CodemirrorModule\n  ],\n  // ...\n})\nexport class AppModule { }\n```\n\n```javascript\nimport { Component } from 'angular2/core';\n\n@Component({\n  selector: 'sample',\n  template: `\n    <codemirror [(ngModel)]=\"code\"\n      [config]=\"{...}\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\">\n    </codemirror>\n  `\n})\nexport class Sample{\n  constructor(){\n    this.code = `// Some code...`;\n  }\n}\n```\n\n### <a name=\"config\"></a>Configuration\n\n* `config` : The configuration object for CodeMirror see http://codemirror.net/doc/manual.html#config\n\n### <a name=\"licence\"></a>Licence\nSee `LICENSE` file\n",
-  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chymz/ng2-codemirror.git"

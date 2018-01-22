@@ -48,12 +48,7 @@ export class ProsemirrorComponent implements OnChanges {
   storeTimeout: any = null;
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-//      console.log(" ------------------> update", changes);
-
-//      if (changes.data.currentValue !== this.previousValue) {
-//        console.log(" ------------------> done");
-        this.setContent(changes.data.currentValue);
-//      }
+    this.setContent(changes.data.currentValue);
   }
 
   /**
@@ -92,7 +87,7 @@ export class ProsemirrorComponent implements OnChanges {
    * Content to Markdown Serializer
    */
 
-  getContent = (tr) => {
+  getContent = () => {
     if (this.storeTimeout !== null) {
       clearTimeout(this.storeTimeout);
     }
@@ -107,6 +102,20 @@ export class ProsemirrorComponent implements OnChanges {
     this.change.emit(this.data);
   }
 
+  dispatchTransaction = (tr: any) => {
+    if (this.instance.inDOMChange) {
+      this.instance.inDOMChange.finish(true);
+    }
+    this.instance.updateState(this.props.state = this.props.state.apply(tr))
+    try {
+      if (tr.steps.length > 0) {
+        this.getContent();
+      }
+    } catch (err) {
+      console.log("Error happended", err)
+    }
+  };
+
   /**
    * Initialize prosemirror
    */
@@ -117,7 +126,7 @@ export class ProsemirrorComponent implements OnChanges {
         doc: defaultMarkdownParser.parse(this.data),
         plugins: exampleSetup({schema})
       }),
-      handleKeyDown: this.getContent.bind(this)
+      dispatchTransaction: this.dispatchTransaction.bind(this)
     };
 
     this.instance = new EditorView(

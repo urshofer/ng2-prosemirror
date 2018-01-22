@@ -35,7 +35,8 @@ export declare class ProsemirrorComponent implements OnChanges {
     /**
      * Content to Markdown Serializer
      */
-    getContent: (tr: any) => void;
+    getContent: () => void;
+    dispatchTransaction: (tr: any) => void;
     /**
      * Initialize prosemirror
      */
