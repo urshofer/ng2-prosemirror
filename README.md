@@ -1,36 +1,24 @@
-# Angular2 - Codemirror component
+# Angular2 - Prosemirror component
 
-Use the [CodeMirror (5.x)](http://codemirror.net/) code editor in your Angular2 application.
-
-**Demo** : https://embed.plnkr.co/8e9gxss9u10VeFrv29Zt/
+This component is initally forked from [ng2-codemirror](https://github.com/chymz/ng2-codemirror) and ported to prosemirror.
 
 ### <a name="install"></a>Installation
 
-- Include Codemirror javascript files in your application (with files for modes)
-- Install ng2-codemirror
-  - JSPM : `jspm install npm:ng2-codemirror`
-  - NPM : `npm install ng2-codemirror`
+- Install ng2-prosemirror
+  - NPM : `npm install ng2-prosemirror`
 
-### <a name="dependencies"></a>Dependencies
-CodeMirror library is required for this component :
-  - Install via NPM : `npm install codemirror`
-  - Install via JSPM : `jspm install npm:codemirror`
-
-CodeMirror need to be accessible by `import 'codemirror'`
-
-Then you need to include base CSS of codemirror located in `codemirror/lib/codemirror.css`
 
 ### <a name="sample"></a>Sample
 
-Include `CodemirrorModule` in your main module :
+Include `ProsemirrorModule` in your main module :
 
 ```javascript
-import { CodemirrorModule } from 'ng2-codemirror';
+import { ProsemirrorModule } from 'ng2-prosemirror';
 
 @NgModule({
   // ...
   imports:      [
-    CodemirrorModule
+    ProsemirrorModule
   ],
   // ...
 })
@@ -45,15 +33,28 @@ import { Component } from 'angular2/core';
   template: `
     <codemirror [(ngModel)]="code"
       [config]="{...}"
-      (focus)="onFocus()"
+      (change)="onChange()"
       (blur)="onBlur()">
     </codemirror>
   `
 })
 export class Sample{
   constructor(){
-    this.code = `// Some code...`;
+    this.code = `// Some code...`; // Holding a markdown version of the content
   }
+
+  onBlur() {
+    // Called after every change, not debounced
+    // this.code will not be updated at this time!
+    // You probably use this function to flag the state of your code to "modified"
+  }
+
+  onChange() {
+    // Called after every change, debounced every 1000ms.
+    // this.code is updated now!
+    // You probably use this function to store something and flag the state of your code to "stored"
+  }
+
 }
 ```
 

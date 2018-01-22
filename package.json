@@ -50,7 +50,7 @@
     "name": "Simon Babay"
   },
   "bugs": {
-    "url": "https://github.com/chymz/ng2-codemirror/issues"
+    "url": "https://github.com/urshofer/ng2-prosemirror/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
@@ -78,12 +78,12 @@
     "zone.js": "^0.7.8"
   },
   "gitHead": "06405f1230f7ef3b0ff54a51c80515ff57513d8a",
-  "homepage": "https://github.com/chymz/ng2-codemirror#readme",
+  "homepage": "https://github.com/urshofer/ng2-prosemirror#readme",
   "keywords": [
     "angular",
     "angular2",
     "component",
-    "codemirror"
+    "prosemirror"
   ],
   "license": "MIT",
   "main": "lib/index.js",
@@ -96,12 +96,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chymz/ng2-codemirror.git"
+    "url": "git+https://github.com/urshofer/ng2-prosemirror.git"
   },
   "scripts": {
     "build": "ngc -p tsconfig-aot.json",
     "prepublish": "npm run build"
   },
   "typings": "lib/index.d.ts",
-  "version": "1.1.1"
+  "version": "1.1.2"
 }
