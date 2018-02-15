@@ -103,5 +103,5 @@
     "prepublish": "npm run build"
   },
   "typings": "lib/index.d.ts",
-  "version": "1.1.2"
+  "version": "1.1.3"
 }
