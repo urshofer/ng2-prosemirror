@@ -121,14 +121,18 @@ export class ProsemirrorComponent implements OnChanges {
    */
   prosemirrorInit(config){
     this.previousValue = this.data;
-    this.props = {
-      state: EditorState.create({
-        doc: defaultMarkdownParser.parse(this.data),
-        plugins: exampleSetup({schema})
-      }),
-      dispatchTransaction: this.dispatchTransaction.bind(this)
-    };
-
+    try {
+      this.props = {
+        state: EditorState.create({
+          doc: defaultMarkdownParser.parse(this.data),
+          plugins: exampleSetup({schema})
+        }),
+        dispatchTransaction: this.dispatchTransaction.bind(this)
+      };      
+    } catch (err) {
+      console.log(err, this.data);
+      return;
+    }
     this.instance = new EditorView(
       this.host.nativeElement,
       this.props
