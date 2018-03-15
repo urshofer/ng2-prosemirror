@@ -3,3 +3,4 @@ node_modules/*
 .idea
 aot/*
 npm-debug.log
+yarn-error.log

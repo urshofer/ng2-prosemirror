@@ -6,16 +6,20 @@ import { EventEmitter, OnChanges, SimpleChange } from '@angular/core';
  */
 export declare class ProsemirrorComponent implements OnChanges {
     data: any;
+    searchString: any;
     config: any;
     dataChange: EventEmitter<number>;
     change: EventEmitter<{}>;
     focus: EventEmitter<{}>;
     blur: EventEmitter<{}>;
+    search: EventEmitter<{}>;
     host: any;
     instance: any;
     props: any;
     previousValue: any;
     storeTimeout: any;
+    higlightRegex: any;
+    plugins: any;
     ngOnChanges(changes: {
         [propKey: string]: SimpleChange;
     }): void;
@@ -37,6 +41,14 @@ export declare class ProsemirrorComponent implements OnChanges {
      */
     getContent: () => void;
     dispatchTransaction: (tr: any) => void;
+    /**
+     * Find Function, mapped to Mod-f
+     * EditorState, EditorView is passed
+     */
+    findFunc(state: any, instance: any): void;
+    /**
+     * Highlight Elements in Editor
+     */
     /**
      * Initialize prosemirror
      */
