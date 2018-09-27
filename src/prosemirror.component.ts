@@ -184,15 +184,26 @@ export class ProsemirrorComponent implements OnChanges {
       if (self.higlightRegex !== undefined && self.higlightRegex != "") {
         r = new RegExp(self.higlightRegex, "ig");
       }
-    
+      let shy  = new RegExp('\u00AD', "g");
+      
       doc.descendants((node, pos) => {
         if (node.isText) {
           let m;
+          // Find Match
           if (r !== null) {
             while (m = r.exec(node.text)) {
               record(pos + m.index, pos + m.index + m[0].length, 'problem', true)
             }
           }
+          while (m = shy.exec(node.text)) {
+            record(pos + m.index, pos + m.index + m[0].length, 'soft_hyphen', false)
+          }
+          // Soft Hyphen
+          /*let shy;
+          while (shy = /\u00AD/g.exec(node.text)) {
+            alert(shy);
+            record(pos + shy.index, pos + shy.index + shy[0].length, 'soft_hyphen', false)
+          }*/
         }
         if (node.type.name === 'hard_break') {
           record(pos, pos, 'hard_break', false)
@@ -235,6 +246,7 @@ export class ProsemirrorComponent implements OnChanges {
     this.plugins.push(keymap({
       "Mod-f": () => this.findFunc(this.props, this.instance)
     }));
+
     this.plugins.push(lintPlugin);
     this.plugins = this.plugins.concat(exampleSetup({schema}));
     
