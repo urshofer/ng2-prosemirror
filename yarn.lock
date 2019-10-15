@@ -125,9 +125,9 @@ prosemirror-dropcursor@^1.0.0:
     prosemirror-state "^1.0.0"
     prosemirror-view "^1.0.0"
 
-prosemirror-example-setup@^1.0.1:
+"prosemirror-example-setup@github:Rokfor/prosemirror-example-setup#master":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/prosemirror-example-setup/-/prosemirror-example-setup-1.0.1.tgz#286e750258e75348e8a3da302744a535f1f44828"
+  resolved "https://codeload.github.com/Rokfor/prosemirror-example-setup/tar.gz/de2ca0a5e5f63d199c413a8719218433a444a86a"
   dependencies:
     prosemirror-commands "^1.0.0"
     prosemirror-dropcursor "^1.0.0"
@@ -170,9 +170,9 @@ prosemirror-keymap@^1.0.0:
     prosemirror-state "^1.0.0"
     w3c-keyname "^1.1.8"
 
-prosemirror-markdown@^1.3.1:
+"prosemirror-markdown@github:Rokfor/prosemirror-markdown#master":
   version "1.3.1"
-  resolved "https://registry.yarnpkg.com/prosemirror-markdown/-/prosemirror-markdown-1.3.1.tgz#6ede0f5993758a257eb33041efed32e449b13ed4"
+  resolved "https://codeload.github.com/Rokfor/prosemirror-markdown/tar.gz/e940169543e423c46aba3b5c40d732e286ff31cf"
   dependencies:
     markdown-it "^8.4.2"
     prosemirror-model "^1.0.0"
