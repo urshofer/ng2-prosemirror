@@ -47,8 +47,14 @@ export declare class ProsemirrorComponent implements OnChanges {
      */
     findFunc(state: any, instance: any): void;
     /**
-     * Highlight Elements in Editor
+     * Insert Elements in Editor
      */
+    insertAttachement(object: any): void;
+    /**
+     * Insert Custom Node in Editor
+     * @param config
+     */
+    insertCustomNode(text: any): void;
     /**
      * Initialize prosemirror
      */

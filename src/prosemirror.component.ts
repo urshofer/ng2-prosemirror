@@ -13,11 +13,17 @@ import {EditorView, Selection, Decoration, DecorationSet}    from "prosemirror-v
 import {Plugin, TextSelection, EditorState}         from "prosemirror-state"
 import {exampleSetup}        from "prosemirror-example-setup"
 import {keymap}              from "prosemirror-keymap"
+
+
 import {
   schema,
   defaultMarkdownParser,
   defaultMarkdownSerializer
 }                            from  "prosemirror-markdown"
+
+import {MenuItem} from "prosemirror-menu"
+import {buildMenuItems} from "prosemirror-example-setup"
+
 
 
 
@@ -161,11 +167,40 @@ export class ProsemirrorComponent implements OnChanges {
   }
 
   /** 
-   * Highlight Elements in Editor
+   * Insert Elements in Editor
    */
 
-
+  insertAttachement(object) {
+    console.log(this.props, this.instance, object, schema)
+    try {
+      if (object.isImage === true) {
+        this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(schema.nodes.image.createAndFill(
+          {
+            src: object.original === true ? object.element.Original : object.element.Resized[0],
+            title: object.element.Captions[0],
+            alt: object.element.Captions[0]
+          }
+        )))
+        this.instance.focus();
+      }
+      else {
+        this.insertCustomNode(`{{${object.fieldName}:${object.anchorIndex}}}`);
+      }  
+    } catch (error) {
+      console.warn(error)
+    }
+    
+  }
  
+  /**
+   * Insert Custom Node in Editor
+   * @param config 
+   */
+  insertCustomNode(text) {
+    const textNode = schema.text(text)
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(schema.nodes.paragraph.create(null, textNode)))
+    this.instance.focus();
+  }
 
 
   /**
@@ -180,12 +215,24 @@ export class ProsemirrorComponent implements OnChanges {
       function record(from, to, css, inline) {
         result.push({from, to, css, inline})
       }
+      // Highlight
       let r = null;
       if (self.higlightRegex !== undefined && self.higlightRegex != "") {
         r = new RegExp(self.higlightRegex, "ig");
       }
+      // Soft Hyphen
       let shy  = new RegExp('\u00AD', "g");
+      // Attachement
+      let att  = new RegExp('\{\{.*?\}\}', "g");
+      // Indizes
+      let marks  = [
+        new RegExp('\\[fn:.*?\\]', "g"),
+        new RegExp('\\[in:.*?\\]', "g"),
+        new RegExp('\\[mark:.*?\\]', "g"),
+        new RegExp('\\[reference:.*?\\]', "g")
+      ];
       
+
       doc.descendants((node, pos) => {
         if (node.isText) {
           let m;
@@ -198,6 +245,19 @@ export class ProsemirrorComponent implements OnChanges {
           while (m = shy.exec(node.text)) {
             record(pos + m.index, pos + m.index + m[0].length, 'soft_hyphen', false)
           }
+          while (m = att.exec(node.text)) {
+            record(pos + m.index, pos + m.index + m[0].length, 'attachement', true)
+          }
+          
+          let _c = 0;
+          marks.forEach(mark => {
+            let _m;
+            while (_m = mark.exec(node.text)) {
+              record(pos + _m.index, pos + _m.index + _m[0].length, `mark mark_${_c}`, true)
+            }            
+            _c++;
+          })
+
           // Soft Hyphen
           /*let shy;
           while (shy = /\u00AD/g.exec(node.text)) {
@@ -248,8 +308,29 @@ export class ProsemirrorComponent implements OnChanges {
     }));
 
     this.plugins.push(lintPlugin);
-    this.plugins = this.plugins.concat(exampleSetup({schema}));
+
+
+  // Ask example-setup to build its basic menu
+  let menu = buildMenuItems(schema)
+  
+  // Add a dino-inserting item for each type of dino
+  const mixins = [
+    ["Footnote",'[fn:]'],
+    ["Index",'[in:]'],
+    ["Mark",'[mark:]']
+  ];
+
+  mixins.forEach(name => menu.insertMenu.content.push(new MenuItem({
+    title: "Insert " + name[0],
+    label: name[0],
+    run: () => {this.insertCustomNode(name[1])}
+  })))
     
+   
+
+    this.plugins = this.plugins.concat(exampleSetup({schema: schema, menuContent: menu.fullMenu}));
+    
+
     try {
       this.props = {
         state: EditorState.create({
