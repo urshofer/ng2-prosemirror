@@ -202,7 +202,24 @@ export class ProsemirrorComponent implements OnChanges {
     this.instance.focus();
   }
 
+  /**
+   * Insert Custom Node in Editor
+   * @param config 
+   */
+  insertCustomTag(type) {
+    let {$from} = this.instance.state.selection
+    console.log(type, $from)
+    /*if (!$from.parent.canReplaceWith($from.index(), $from.index(), type)) {
+      alert('cannot add')
+      return false
+    }*/
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create()))
+    this.instance.focus();
+    alert('added');
+    return true
+  }
 
+  
   /**
    * Initialize prosemirror
    */
@@ -326,7 +343,11 @@ export class ProsemirrorComponent implements OnChanges {
     run: () => {this.insertCustomNode(name[1])}
   })))
     
-   
+  menu.insertMenu.content.push(new MenuItem({
+    title: "Custom Tag: Footnote",
+    label: "Custom Tag: Footnote",
+    run: () => {this.insertCustomTag(schema.nodes.footnote)}
+  }))
 
     this.plugins = this.plugins.concat(exampleSetup({schema: schema, menuContent: menu.fullMenu}));
     

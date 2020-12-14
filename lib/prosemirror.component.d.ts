@@ -56,6 +56,11 @@ export declare class ProsemirrorComponent implements OnChanges {
      */
     insertCustomNode(text: any): void;
     /**
+     * Insert Custom Node in Editor
+     * @param config
+     */
+    insertCustomTag(type: any): boolean;
+    /**
      * Initialize prosemirror
      */
     prosemirrorInit(config: any): void;

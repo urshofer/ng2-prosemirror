@@ -55,7 +55,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "prosemirror-example-setup": "github:Rokfor/prosemirror-example-setup#master",
-    "prosemirror-markdown": "github:Rokfor/prosemirror-markdown#master",
+    "prosemirror-markdown": "github:Rokfor/prosemirror-markdown#customfeatures",
     "prosemirror-model": "^1.7.1",
     "prosemirror-state": "^1.2.3",
     "prosemirror-view": "^1.9.10"
