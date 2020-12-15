@@ -212,7 +212,7 @@ export class ProsemirrorComponent implements OnChanges {
   insertCustomTag(type) {
     let {$from} = this.instance.state.selection
     console.log(type, $from)
-    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text(type.nodeType))))
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text(type.name))))
     this.instance.focus();
     //alert('added');
     return true
