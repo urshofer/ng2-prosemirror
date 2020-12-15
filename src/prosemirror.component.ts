@@ -24,6 +24,9 @@ import {
 import {MenuItem} from "prosemirror-menu"
 import {buildMenuItems} from "prosemirror-example-setup"
 
+import {wrapIn} from "prosemirror-commands"
+
+
 
 
 
@@ -209,13 +212,13 @@ export class ProsemirrorComponent implements OnChanges {
   insertCustomTag(type) {
     let {$from} = this.instance.state.selection
     console.log(type, $from)
-    /*if (!$from.parent.canReplaceWith($from.index(), $from.index(), type)) {
-      alert('cannot add')
-      return false
-    }*/
-    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text('some text'))))
+    
+    //this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text('some text'))))
+    
+
+    wrapIn(type.nodeType, type.attrs)(this.instance.state, this.instance.dispatch)
     this.instance.focus();
-    alert('added');
+    //alert('added');
     return true
   }
 
