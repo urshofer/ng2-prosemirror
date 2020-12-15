@@ -25,6 +25,7 @@ import {MenuItem} from "prosemirror-menu"
 import {buildMenuItems} from "prosemirror-example-setup"
 
 import {wrapIn} from "prosemirror-commands"
+import { scheduleMicroTask } from '@angular/core/src/util';
 
 
 
@@ -199,9 +200,10 @@ export class ProsemirrorComponent implements OnChanges {
    * Insert Custom Node in Editor
    * @param config 
    */
-  insertCustomNode(text) {
+  insertCustomNode(text, node?: any) {
+    node = node || schema.nodes.paragraph
     const textNode = schema.text(text)
-    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(schema.nodes.paragraph.create(null, textNode)))
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(node.create(null, textNode)))
     this.instance.focus();
   }
 
@@ -330,17 +332,18 @@ export class ProsemirrorComponent implements OnChanges {
   let menu = buildMenuItems(schema)
   
   // Add a dino-inserting item for each type of dino
-  /*const mixins = [
-    ["Footnote",'[fn:]'],
-    ["Index",'[in:]'],
-    ["Mark",'[mark:]']
+  const mixins = [
+    ["Index",'indexword', schema.marks.index],
+    ["Mark",'markername', schema.marks.mark],
+    ["Reference",'markername', schema.marks.reference],
+    ["Language",'ngerman', schema.marks.language],
   ];
 
   mixins.forEach(name => menu.insertMenu.content.push(new MenuItem({
-    title: "Insert " + name[0],
+    title: "Insert: " + name[0],
     label: name[0],
-    run: () => {this.insertCustomNode(name[1])}
-  })))*/
+    run: () => {this.insertCustomNode(name[1], name[2])}
+  })))
     
   menu.insertMenu.content.push(new MenuItem({
     title: "Custom Tag: Footnote",

@@ -54,7 +54,7 @@ export declare class ProsemirrorComponent implements OnChanges {
      * Insert Custom Node in Editor
      * @param config
      */
-    insertCustomNode(text: any): void;
+    insertCustomNode(text: any, node?: any): void;
     /**
      * Insert Custom Node in Editor
      * @param config
