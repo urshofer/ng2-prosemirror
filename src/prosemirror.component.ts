@@ -212,11 +212,7 @@ export class ProsemirrorComponent implements OnChanges {
   insertCustomTag(type) {
     let {$from} = this.instance.state.selection
     console.log(type, $from)
-    
-    //this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text('some text'))))
-    
-
-    wrapIn(type.nodeType, type.attrs)(this.instance.state, this.instance.dispatch)
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null,  schema.text(type.nodeType))))
     this.instance.focus();
     //alert('added');
     return true
@@ -334,7 +330,7 @@ export class ProsemirrorComponent implements OnChanges {
   let menu = buildMenuItems(schema)
   
   // Add a dino-inserting item for each type of dino
-  const mixins = [
+  /*const mixins = [
     ["Footnote",'[fn:]'],
     ["Index",'[in:]'],
     ["Mark",'[mark:]']
@@ -344,13 +340,28 @@ export class ProsemirrorComponent implements OnChanges {
     title: "Insert " + name[0],
     label: name[0],
     run: () => {this.insertCustomNode(name[1])}
-  })))
+  })))*/
     
   menu.insertMenu.content.push(new MenuItem({
     title: "Custom Tag: Footnote",
     label: "Custom Tag: Footnote",
     run: () => {this.insertCustomTag(schema.nodes.footnote)}
   }))
+  menu.insertMenu.content.push(new MenuItem({
+    title: "Custom Tag: LaTex",
+    label: "Custom Tag: LaTex",
+    run: () => {this.insertCustomTag(schema.nodes.latex)}
+  }))
+  menu.insertMenu.content.push(new MenuItem({
+    title: "Custom Tag: Comment",
+    label: "Custom Tag: Comment",
+    run: () => {this.insertCustomTag(schema.nodes.comment)}
+  }))
+  menu.insertMenu.content.push(new MenuItem({
+    title: "Custom Tag: Alternate Paragraph",
+    label: "Custom Tag: Alternate Paragraph",
+    run: () => {this.insertCustomTag(schema.nodes.paragraphalternate)}
+  }))  
 
     this.plugins = this.plugins.concat(exampleSetup({schema: schema, menuContent: menu.fullMenu}));
     
