@@ -213,7 +213,7 @@ export class ProsemirrorComponent implements OnChanges {
       alert('cannot add')
       return false
     }*/
-    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create()))
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(type.create(null, 'some text')))
     this.instance.focus();
     alert('added');
     return true
