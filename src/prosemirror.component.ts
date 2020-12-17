@@ -207,6 +207,13 @@ export class ProsemirrorComponent implements OnChanges {
     this.instance.focus();
   }
 
+  insertCustomMark(text, mark: any) {
+    /*mark.exec()
+    const textNode = schema.text(text)
+    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(node.create(null, textNode)))
+    this.instance.focus();*/
+  }
+
   /**
    * Insert Custom Node in Editor
    * @param config 
@@ -342,7 +349,7 @@ export class ProsemirrorComponent implements OnChanges {
   mixins.forEach(name => menu.insertMenu.content.push(new MenuItem({
     title: "Insert: " + name[0],
     label: name[0],
-    run: () => {this.insertCustomNode(name[1], name[2])}
+    run: () => {this.insertCustomMark(name[1], name[2])}
   })))
     
   menu.insertMenu.content.push(new MenuItem({
