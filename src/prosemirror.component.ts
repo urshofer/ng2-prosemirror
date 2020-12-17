@@ -315,6 +315,7 @@ export class ProsemirrorComponent implements OnChanges {
     // Ask example-setup to build its basic menu
     let menu = buildMenuItems(schema)
 
+    console.log('starting example setup', schema, menu.fullMenu)
     this.plugins = this.plugins.concat(exampleSetup({schema: schema, menuContent: menu.fullMenu}));
 
     try {
