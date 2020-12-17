@@ -1,30 +1,12 @@
-// Imports
-import {
-  Component,
-  Input,
-  Output,
-  ViewChild,
-  EventEmitter,
-  OnChanges,
-  SimpleChange
-}                            from '@angular/core';
+import {Component, Input, Output, ViewChild,
+        EventEmitter, OnChanges, SimpleChange}    from '@angular/core';
 import {EditorView, Decoration, DecorationSet}    from "prosemirror-view"
-import {Plugin, EditorState}         from "prosemirror-state"
-import {exampleSetup}        from "prosemirror-example-setup"
-import {keymap}              from "prosemirror-keymap"
-
-
-import {
-  schema,
-  defaultMarkdownParser,
-  defaultMarkdownSerializer
-}                            from  "prosemirror-markdown"
-
-import {buildMenuItems} from "prosemirror-example-setup"
-
-
-
-
+import {Plugin, EditorState}                      from "prosemirror-state"
+import {exampleSetup}                             from "prosemirror-example-setup"
+import {keymap}                                   from "prosemirror-keymap"
+import {schema, defaultMarkdownParser, 
+        defaultMarkdownSerializer}                from "prosemirror-markdown"
+import {buildMenuItems}                           from "prosemirror-example-setup"
 
 
 /**
