@@ -334,47 +334,10 @@ export class ProsemirrorComponent implements OnChanges {
 
     this.plugins.push(lintPlugin);
 
-
-  // Ask example-setup to build its basic menu
-  let menu = buildMenuItems(schema)
-  
-  // Add a dino-inserting item for each type of dino
-  const mixins = [
-    ["Index",'indexword', schema.marks.index],
-    ["Mark",'markername', schema.marks.mark],
-    ["Reference",'markername', schema.marks.reference],
-    ["Language",'ngerman', schema.marks.language],
-  ];
-
-  mixins.forEach(name => menu.insertMenu.content.push(new MenuItem({
-    title: "Insert: " + name[0],
-    label: name[0],
-    run: () => {this.insertCustomMark(name[1], name[2])}
-  })))
-    
-  menu.insertMenu.content.push(new MenuItem({
-    title: "Custom Tag: Footnote",
-    label: "Custom Tag: Footnote",
-    run: () => {this.insertCustomTag(schema.nodes.footnote)}
-  }))
-  menu.insertMenu.content.push(new MenuItem({
-    title: "Custom Tag: LaTex",
-    label: "Custom Tag: LaTex",
-    run: () => {this.insertCustomTag(schema.nodes.latex)}
-  }))
-  menu.insertMenu.content.push(new MenuItem({
-    title: "Custom Tag: Comment",
-    label: "Custom Tag: Comment",
-    run: () => {this.insertCustomTag(schema.nodes.comment)}
-  }))
-  menu.insertMenu.content.push(new MenuItem({
-    title: "Custom Tag: Alternate Paragraph",
-    label: "Custom Tag: Alternate Paragraph",
-    run: () => {this.insertCustomTag(schema.nodes.paragraphalternate)}
-  }))  
+    // Ask example-setup to build its basic menu
+    let menu = buildMenuItems(schema)
 
     this.plugins = this.plugins.concat(exampleSetup({schema: schema, menuContent: menu.fullMenu}));
-    
 
     try {
       this.props = {
