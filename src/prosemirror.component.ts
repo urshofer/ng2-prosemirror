@@ -185,13 +185,6 @@ export class ProsemirrorComponent implements OnChanges {
     this.instance.focus();
   }
 
-  insertCustomMark(text, mark: any) {
-    /*mark.exec()
-    const textNode = schema.text(text)
-    this.instance.dispatch(this.instance.state.tr.replaceSelectionWith(node.create(null, textNode)))
-    this.instance.focus();*/
-  }
-
   /**
    * Insert Custom Node in Editor
    * @param config 
