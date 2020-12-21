@@ -56,7 +56,7 @@
   "dependencies": {
     "prosemirror-example-setup": "github:Rokfor/prosemirror-example-setup#master",
     "prosemirror-markdown": "github:Rokfor/prosemirror-markdown#customfeatures",
-    "prosemirror-model": "^1.13.0",
+    "prosemirror-model": "^1.13.1",
     "prosemirror-state": "^1.3.3",
     "prosemirror-view": "^1.16.5"
   },
