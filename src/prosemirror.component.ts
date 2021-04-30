@@ -244,7 +244,7 @@ export class ProsemirrorComponent implements OnChanges {
             record(pos + m.index, pos + m.index + m[0].length, 'soft_hyphen', false)
           }
           while (m = forcebreak.exec(node.text)) {
-            record(pos + m.index, pos + m.index + m[0].length, 'force_break', false)
+            record(pos + m.index, pos + m.index + m[0].length, 'force_break', true)
           }          
           while (m = att.exec(node.text)) {
             record(pos + m.index, pos + m.index + m[0].length, 'attachement', true)
