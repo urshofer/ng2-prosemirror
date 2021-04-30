@@ -221,7 +221,7 @@ export class ProsemirrorComponent implements OnChanges {
       // Attachement
       let att  = new RegExp('\{\{.*?\}\}', "g");
       // Latex Force Break
-      let forcebreak  = new RegExp('\\\\', "g");
+      let forcebreak  = new RegExp('\\\\\\\\', "g");
       // Indizes
       let marks  = [
         new RegExp('\\[fn:.*?\\]', "g"),
