@@ -160,7 +160,7 @@ export class ProsemirrorComponent implements OnChanges {
           {
             src: object.original === true ? object.element.Original : object.element.Resized[0],
             title: object.element.Captions[0],
-            alt: object.element.Captions[0]
+            alt: object.element.Captions[1]
           }
         )))
         this.instance.focus();
@@ -220,6 +220,8 @@ export class ProsemirrorComponent implements OnChanges {
       let shy  = new RegExp('\u00AD', "g");
       // Attachement
       let att  = new RegExp('\{\{.*?\}\}', "g");
+      // Latex Force Break
+      let forcebreak  = new RegExp('\\\\', "g");
       // Indizes
       let marks  = [
         new RegExp('\\[fn:.*?\\]', "g"),
@@ -241,6 +243,9 @@ export class ProsemirrorComponent implements OnChanges {
           while (m = shy.exec(node.text)) {
             record(pos + m.index, pos + m.index + m[0].length, 'soft_hyphen', false)
           }
+          while (m = forcebreak.exec(node.text)) {
+            record(pos + m.index, pos + m.index + m[0].length, 'force_break', false)
+          }          
           while (m = att.exec(node.text)) {
             record(pos + m.index, pos + m.index + m[0].length, 'attachement', true)
           }
