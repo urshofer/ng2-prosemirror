@@ -92,6 +92,7 @@ export class ProsemirrorComponent implements OnChanges {
   setContent(val) {
     if (this.instance !== null && val !== this.previousValue) {
       this.data = val;
+      this.previousValue = val;
       this.props.state = EditorState.create({
           doc: defaultMarkdownParser.parse(this.data),
           plugins: this.plugins
