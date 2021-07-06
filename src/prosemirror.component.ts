@@ -42,7 +42,6 @@ export class ProsemirrorComponent implements OnChanges {
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     try  {
-      console.log(changes)
       if (changes['data']) {
         this.setContent(changes['data'].currentValue);
       }
